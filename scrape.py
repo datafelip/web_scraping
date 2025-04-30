@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import pandas as pd
+import time
 
 
 service = Service()
@@ -22,6 +23,7 @@ for title in titleElements:
     tmp = {}
     tmp["Titulo"] = title.get_attribute('title')
     title.click()
+    time.sleep(0.7)
     tmp["Valor"] = driver.find_element(By.CLASS_NAME, "price_color").text
     tmp["Estoque"] = int(driver.find_element(By.CLASS_NAME, 'instock').text.replace('In stock (', '').replace(' available)', ''))
     bookslist.append(tmp) 
